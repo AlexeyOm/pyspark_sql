@@ -21,5 +21,5 @@ df = df.where('location = "Russia"').select("date", "new_cases").withColumn("dat
 ws = Window.partitionBy().orderBy("date")
 
 df = df.withColumn("yesterday", lag("new_cases", 1, 0).over(ws))
-df = df.withColumn("delta", df.new_cases - df.yesterday).where("date between '2020-03-29' and '2020-03-31'")
-df.write.mode("overwrite").csv("russian_delta.csv")
+df = df.withColumn("delta", df.new_cases - df.yesterday).where("date between '2021-03-29' and '2021-03-31'")
+df.write.mode("overwrite").option("header", True).csv("3.csv")
